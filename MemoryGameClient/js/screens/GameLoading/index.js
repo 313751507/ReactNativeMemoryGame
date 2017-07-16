@@ -28,7 +28,6 @@ export default class GameLoading extends Component
       nextProps.flickr.fetched === true
     )
     {
-      //console.log('Dispatching create game!');
       this.props.dispatch(GameActions.createNewGame(
           this.props.navigation.state.params.game_name,
           nextProps.flickr.photos,

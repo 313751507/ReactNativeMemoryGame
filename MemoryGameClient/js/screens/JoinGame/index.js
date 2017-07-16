@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 
-/*@connect((store) => {
-  return {
-  };
-})*/
 export default class JoinGame extends Component
 {
   static navigationOptions = {
@@ -23,11 +18,6 @@ export default class JoinGame extends Component
       method: 'join_game',
       game_name: this.state.text
     });
-  }
-
-  componentWillMount()
-  {
-    //this.props.dispatch(user.fetchUserFromEOLFulfilled());
   }
 
   render()

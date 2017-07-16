@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { View, Text, Button, StyleSheet, TextInput } from 'react-native';
 const uniqueId = require('react-native-unique-id');
 
-/*@connect((store) => {
-  return {
-  };
-})*/
 export default class CreateGame extends Component
 {
   static navigationOptions = {
@@ -15,7 +10,7 @@ export default class CreateGame extends Component
 
   constructor(props) {
     super(props);
-    this.state = { text: 'Enter a name for this game' };
+    this.state = { text: '' };
   }
 
   onCreateGamePress()
@@ -39,14 +34,6 @@ export default class CreateGame extends Component
       });
   }
 
-  componentWillMount()
-  {
-    //this.props.dispatch(user.fetchUserFromEOLFulfilled());
-    /*uniqueId()
-      .then(id => console.log(id))
-      .catch(error => console.error(error))*/
-  }
-
   render()
   {
     return (
@@ -55,12 +42,15 @@ export default class CreateGame extends Component
           style={styles.input}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
+          placeholder={'Enter a name for this game'}
         />
-        <Button
-          style={styles.selectionButton}
-          styleDisabled={{color: 'red'}}
-          onPress={this.onCreateGamePress.bind(this)}
-          title={'Create game'} />
+        <View style={{paddingTop: 10}}>
+          <Button
+            style={styles.selectionButton}
+            styleDisabled={{color: 'red'}}
+            onPress={this.onCreateGamePress.bind(this)}
+            title={'Create game'} />
+        </View>
       </View>
     );
   }
@@ -87,7 +77,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginLeft: 30,
     marginRight: 30,
-    textAlign: 'center'
+    textAlign: 'center',
+    width: 200
   },
   selectionButton: {
     fontSize: 20,

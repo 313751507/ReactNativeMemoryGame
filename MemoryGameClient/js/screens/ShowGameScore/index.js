@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import autobind from 'autobind-decorator';
-import Horizon from '@memory_game_api/HorizonClient'
+import * as MemoryGameApi from '@memory_game_api/MemoryGameServer';
+import { NavigationActions } from 'react-navigation';
 
 export default class ShowGameScore extends Component
 {
@@ -12,8 +13,6 @@ export default class ShowGameScore extends Component
     this.state = {
       winnerText: ''
     };
-
-    this.players = Horizon("players");
   }
 
   @autobind
@@ -25,7 +24,21 @@ export default class ShowGameScore extends Component
   @autobind
   onPressHighScores()
   {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'ShowHighScore', params: {
+          game_name: this.props.gameName,
+          device_player: this.props.navigation.state.params.player_id
+        }})
+      ]
+    });
+    this.props.navigation.dispatch(resetAction);
 
+    // this.props.navigation.navigate('ShowHighScore', {
+    //   game_name: this.props.gameName,
+    //   device_player: this.props.navigation.state.params.player_id
+    // });
   }
 
   @autobind
@@ -34,28 +47,7 @@ export default class ShowGameScore extends Component
     var searchObj = [];
     for (var i = 0; i < players.length; i++)
     {
-      this.players.find({id: players[i].id})
-      .fetch()
-      .subscribe(((result, err) => {
-        if (result == null)
-        {
-          this.players.store({
-            id: this.id,
-            score: this.score
-          });
-        }
-        else
-        {
-          this.players.store({
-            id: this.id,
-            score: this.score + result.score
-          });
-        }
-        console.log('This:', this);
-        console.log('Result:', result);
-        console.error(err);
-        console.log('Results fetched');
-      }).bind(players[i]));
+      MemoryGameApi.SubmitGameScore(players[i].id, players[i].score);
     }
   }
 

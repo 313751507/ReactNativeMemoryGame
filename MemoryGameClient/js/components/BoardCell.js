@@ -7,19 +7,21 @@ export default class BoardCell extends Component
   constructor(props)
   {
     super(props);
-    //console.log(props);
   }
 
   render()
   {
     let renderedView = null;
 
+    // <Text style={{flex: 1}}>{libBoardTile.GetTileNumber(this.props.tileData)}</Text>
+
     if (libBoardTile.IsTileBlocked(this.props.tileData))
     {
       renderedView = (
-        <View style={{backgroundColor: 'red', flex:1}}>
+        <View style={{borderColor: 'black', borderWidth: 2, flex:1}}>
           <TouchableHighlight onPress={this.props.onPress} style={styles.blockedCell}>
-            <Text style={{flex: 1}}>{libBoardTile.GetTileNumber(this.props.tileData)}</Text>
+            <View style={{backgroundColor: 'green', flex:0.4}}>
+            </View>
           </TouchableHighlight>
         </View>
       );
@@ -54,7 +56,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   blockedCell: {
-    flex: 1
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   playedCell: {
     backgroundColor: '#333300',

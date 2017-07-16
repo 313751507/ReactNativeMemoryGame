@@ -1,4 +1,8 @@
-const Horizon = require("@horizon/client");
+//const Horizon = require("horizon-rn-client/src/");
+//import { Alert, WebSocket } from 'react-native';
 
-const host =  "127.0.0.1";
+// import Horizon from '@horizon/client';
+import Horizon from 'temp-react-native-hz-client';
+
+const host =  "192.168.0.6";
 export default Horizon({host: host + ':8181'});

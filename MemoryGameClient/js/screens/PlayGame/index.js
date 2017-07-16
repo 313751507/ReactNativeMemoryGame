@@ -12,6 +12,8 @@ var CELL_SIZE = Math.floor(width * .25); // 25% of the screen width
 var CELL_PADDING = Math.floor(CELL_SIZE * .05); // 5% of the cell size
 var BORDER_RADIUS = CELL_PADDING * 2;
 var TILE_SIZE = CELL_SIZE - CELL_PADDING * 2;
+var PLAY_AREA_HEIGHT = Math.floor(height * .60);
+var TILE_HEIGHT = (PLAY_AREA_HEIGHT / 4) - ((PLAY_AREA_HEIGHT / 4) * 0.2);
 
 @connect((store) => {
   return {
@@ -186,7 +188,7 @@ const styles = StyleSheet.create({
   },
   footerContainer: {
     flex: .2,
-    backgroundColor: 'orange',
+    backgroundColor: 'transparent',
     flexDirection: 'row',
     alignItems: 'center'
   },
@@ -211,7 +213,7 @@ const styles = StyleSheet.create({
   },
   tile: {
     width: TILE_SIZE,
-    height: TILE_SIZE,
+    height: TILE_HEIGHT,
     borderRadius: BORDER_RADIUS,
     backgroundColor: '#BEE1D2',
   },
