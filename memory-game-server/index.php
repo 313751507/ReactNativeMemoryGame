@@ -14,10 +14,10 @@ class HighScoreRow {
 // Initialize
 $database = new Medoo([
     'database_type' => 'mysql',
-    'database_name' => 'memory_game',
-    'server' => 'localhost',
-    'username' => 'root',
-    'password' => 'root'
+    'database_name' => 'epiz_20389944_memory_game',
+    'server' => 'sql209.epizy.com',
+    'username' => 'epiz_20389944',
+    'password' => 'uSqvoqkm'
 ]);
 
 if (isset($_GET["method"]))

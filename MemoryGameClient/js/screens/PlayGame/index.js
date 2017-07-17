@@ -5,6 +5,7 @@ import BoardCell from '@memory_game_components/BoardCell';
 import * as playGameActions from './actions';
 import * as gameActions from '@memory_game_actions/gameActions';
 var timer = require('react-native-timer');
+import { NavigationActions } from 'react-navigation';
 
 var {width, height} = require('Dimensions').get('window');
 
@@ -84,11 +85,24 @@ export default class PlayGame extends Component
       console.log("Game Finished! From PlayGame screen!");
       timer.setTimeout(
         this, 'gameFinished', () => {
-          this.props.navigation.navigate('ShowGameScore', {
-            players: this.props.gamePlayers,
-            game_name: this.props.gameName,
-            device_player: this.props.navigation.state.params.player_id
+
+          const resetAction = NavigationActions.reset({
+            index: 0,
+            actions: [
+              NavigationActions.navigate({ routeName: 'ShowGameScore', params: {
+                players: this.props.gamePlayers,
+                game_name: this.props.gameName,
+                device_player: this.props.navigation.state.params.player_id
+              }})
+            ]
           });
+          this.props.navigation.dispatch(resetAction);
+
+          // this.props.navigation.navigate('ShowGameScore', {
+          //   players: this.props.gamePlayers,
+          //   game_name: this.props.gameName,
+          //   device_player: this.props.navigation.state.params.player_id
+          // });
         }, 1200
       );
     }

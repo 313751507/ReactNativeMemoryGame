@@ -78,7 +78,8 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     marginRight: 30,
     textAlign: 'center',
-    width: 200
+    width: 200,
+    alignSelf: 'center'
   },
   selectionButton: {
     fontSize: 20,
